@@ -88,7 +88,8 @@ variable "app_insights" {
     connection_string = string
     key               = string
   })
-  default = null
+  default   = null
+  sensitive = true
 }
 
 variable "app_settings" {
