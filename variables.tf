@@ -30,21 +30,13 @@ variable "environment" {
 variable "resource_group" {
   description = "(Required) The resource group this function app should be created in."
   type        = any
-  default     = null
-  validation {
-    condition     = var.resource_group != null
-    error_message = "Resource group is required."
-  }
+  nullable    = false
 }
 
 variable "service_plan" {
   description = "(Required) The service plan where this function app should run."
   type        = any
-  default     = null
-  validation {
-    condition     = var.service_plan != null
-    error_message = "Service plan is required."
-  }
+  nullable    = false
 }
 
 variable "storage_account" {
@@ -85,8 +77,8 @@ variable "identity" {
 variable "app_insights" {
   description = "(Optional) Application insights configuration for the function app."
   type = object({
-    connection_string = string
-    key               = string
+    connection_string   = string
+    instrumentation_key = string
   })
   default   = null
   sensitive = true

@@ -1,7 +1,7 @@
 locals {
   name                 = "${var.system_short_name}-${var.app_name}-${var.environment}"
   function_app_name    = "${local.name}-func"
-  storage_account_name = var.storage_account.name ? var.storage_account.name : "${var.system_short_name}${var.storage_account.app_short_name}${var.environment}st"
+  storage_account_name = var.storage_account.name != null ? var.storage_account.name : "${var.system_short_name}${var.storage_account.app_short_name}${var.environment}st"
 }
 
 module "storageaccount_functionapp" {
@@ -49,7 +49,7 @@ resource "azurerm_linux_function_app" "app" {
       }
     }
     application_insights_connection_string = var.app_insights.connection_string
-    application_insights_key               = var.app_insights.key
+    application_insights_key               = var.app_insights.instrumentation_key
   }
 }
 
@@ -79,6 +79,6 @@ resource "azurerm_windows_function_app" "app" {
       }
     }
     application_insights_connection_string = var.app_insights.connection_string
-    application_insights_key               = var.app_insights.key
+    application_insights_key               = var.app_insights.instrumentation_key
   }
 }
