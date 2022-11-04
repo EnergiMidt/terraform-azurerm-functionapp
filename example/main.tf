@@ -37,6 +37,16 @@ module "functionapp" {
   storage_account = {
     app_short_name = "functionapp"
   }
-  inbound_ip_filtering = ["0.0.0.0/0", "1.2.3.4/32"]
-  tags                 = local.tags
+  inbound_ip_filtering = [
+    {
+      ip_address = "0.0.0.0/0"
+      priority   = 1000
+      name       = "allow_all"
+      }, {
+      ip_address = "1.2.3.4/32"
+      priority   = 1100
+      name       = "allow_only"
+    }
+  ]
+  tags = local.tags
 }

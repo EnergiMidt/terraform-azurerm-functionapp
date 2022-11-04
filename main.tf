@@ -49,9 +49,11 @@ resource "azurerm_linux_function_app" "app" {
       }
     }
     dynamic "ip_restriction" {
-      for_each = var.inbound_ip_filtering
+      for_each = var.inbound_ip_filtering[*]
       content {
-        ip_address = ip_restriction.value
+        ip_address = ip_restriction.value.ip_address
+        name       = ip_restriction.value.name
+        priority   = ip_restriction.value.priority
         action     = "ALLOW"
       }
     }
@@ -86,9 +88,11 @@ resource "azurerm_windows_function_app" "app" {
       }
     }
     dynamic "ip_restriction" {
-      for_each = var.inbound_ip_filtering
+      for_each = var.inbound_ip_filtering[*]
       content {
-        ip_address = ip_restriction.value
+        ip_address = ip_restriction.value.ip_address
+        name       = ip_restriction.value.name
+        priority   = ip_restriction.value.priority
         action     = "ALLOW"
       }
     }

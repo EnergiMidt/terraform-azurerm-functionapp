@@ -58,8 +58,12 @@ variable "storage_account" {
 
 variable "inbound_ip_filtering" {
   description = "(Optional) A list of CIDR notated addresses that should be allowed to access the function."
-  type        = list(string)
-  default     = []
+  type = list(object({
+    name       = string
+    ip_address = string
+    priority   = number
+  }))
+  default = []
 }
 
 variable "cors" {
