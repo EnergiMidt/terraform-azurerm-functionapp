@@ -56,6 +56,12 @@ variable "storage_account" {
   }
 }
 
+variable "inbound_ip_filtering" {
+  description = "(Optional) A list of CIDR notated addresses that should be allowed to access the function."
+  type        = list(string)
+  default     = []
+}
+
 variable "cors" {
   description = "(Optional) CORS settings for the function app."
   type = object({

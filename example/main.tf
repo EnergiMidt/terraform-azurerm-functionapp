@@ -21,7 +21,7 @@ module "service_plan" {
   resource_group = module.resource_group
   environment    = "test"
   system_name    = "tf-functionapp"
-  os_type        = "Windows"
+  os_type        = "Linux"
   sku_name       = "P1v3"
   tags           = local.tags
 }
@@ -37,5 +37,6 @@ module "functionapp" {
   storage_account = {
     app_short_name = "functionapp"
   }
-  tags = local.tags
+  inbound_ip_filtering = ["0.0.0.0/0", "1.2.3.4/32"]
+  tags                 = local.tags
 }

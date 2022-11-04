@@ -48,6 +48,13 @@ resource "azurerm_linux_function_app" "app" {
         support_credentials = cors.value.support_credentials
       }
     }
+    dynamic "ip_restriction" {
+      for_each = var.inbound_ip_filtering
+      content {
+        ip_address = ip_restriction.value
+        action     = "ALLOW"
+      }
+    }
     application_insights_connection_string = var.app_insights.connection_string
     application_insights_key               = var.app_insights.instrumentation_key
   }
@@ -76,6 +83,13 @@ resource "azurerm_windows_function_app" "app" {
       content {
         allowed_origins     = cors.value.allowed_origins
         support_credentials = cors.value.support_credentials
+      }
+    }
+    dynamic "ip_restriction" {
+      for_each = var.inbound_ip_filtering
+      content {
+        ip_address = ip_restriction.value
+        action     = "ALLOW"
       }
     }
     application_insights_connection_string = var.app_insights.connection_string
