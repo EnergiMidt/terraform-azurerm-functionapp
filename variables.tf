@@ -49,7 +49,10 @@ variable "storage_account" {
     name           = optional(string)
     app_short_name = optional(string)
   })
-  default = {}
+  default = {
+    name           = null
+    app_short_name = null
+  }
   validation {
     condition     = var.storage_account.name != null || (var.storage_account.name == null && var.storage_account.app_short_name != null)
     error_message = "Name of an existing storage account or a short name for the app must be provided."

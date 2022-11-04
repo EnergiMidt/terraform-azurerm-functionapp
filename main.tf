@@ -6,7 +6,7 @@ locals {
 
 module "storageaccount_functionapp" {
   source = "github.com/energimidt/terraform-azurerm-storageaccount.git?ref=v0.0.1"
-  count  = var.storage_account.name == null ? 0 : 1
+  count  = var.storage_account.app_short_name != null ? 1 : 0
 
   environment              = var.environment
   system_name              = local.name
