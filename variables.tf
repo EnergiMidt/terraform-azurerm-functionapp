@@ -46,15 +46,15 @@ variable "storage_account" {
   The total length of the storage account name cannot exceed 24 characters and can only contain numbers and  lowercase letters.
   EOT
   type = object({
-    name           = optional(string)
-    app_short_name = optional(string)
+    existing_account = optional(any)
+    app_short_name   = optional(string)
   })
   default = {
-    name           = null
-    app_short_name = null
+    existing_account = null
+    app_short_name   = null
   }
   validation {
-    condition     = var.storage_account.name != null || (var.storage_account.name == null && var.storage_account.app_short_name != null)
+    condition     = var.storage_account.existing_account != null || (var.storage_account.existing_account == null && var.storage_account.app_short_name != null)
     error_message = "Name of an existing storage account or a short name for the app must be provided."
   }
 }
