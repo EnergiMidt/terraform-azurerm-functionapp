@@ -15,13 +15,6 @@ module "storageaccount_functionapp" {
   account_replication_type = "LRS"
   account_tier             = "Standard"
   account_kind             = "StorageV2"
-  network_rules = [
-    {
-      default_action      = "Deny"
-      bypass              = ["AzureServices"]
-      private_link_access = []
-    }
-  ]
 }
 
 resource "azurerm_linux_function_app" "app" {
