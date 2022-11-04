@@ -24,7 +24,7 @@ module "storageaccount_functionapp" {
 }
 
 resource "azurerm_linux_function_app" "app" {
-  count                = var.service_plan.os_type == "linux" ? 1 : 0
+  count                = var.service_plan.os_type == "Linux" ? 1 : 0
   name                 = local.function_app_name
   location             = var.resource_group.location
   resource_group_name  = var.resource_group.name
@@ -61,7 +61,7 @@ resource "azurerm_linux_function_app" "app" {
 }
 
 resource "azurerm_windows_function_app" "app" {
-  count                = var.service_plan.os_type == "windows" ? 1 : 0
+  count                = var.service_plan.os_type == "Windows" ? 1 : 0
   name                 = local.function_app_name
   location             = var.resource_group.location
   resource_group_name  = var.resource_group.name
