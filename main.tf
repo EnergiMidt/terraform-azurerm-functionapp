@@ -1,7 +1,7 @@
 locals {
   name                 = "${var.system_short_name}-${var.app_name}-${var.environment}"
   function_app_name    = "${local.name}-func"
-  storage_account_name = var.storage_account.existing_account != null ? var.storage_account.existing_account.name : "${var.system_short_name}${var.storage_account.app_short_name}${var.environment}st"
+  storage_account_name = "${var.system_short_name}${var.storage_account.app_short_name}${var.environment}st"
 }
 
 module "storageaccount" {
@@ -18,15 +18,16 @@ module "storageaccount" {
 }
 
 resource "azurerm_linux_function_app" "app" {
-  count                = var.service_plan.os_type == "Linux" ? 1 : 0
-  name                 = local.function_app_name
-  location             = var.resource_group.location
-  resource_group_name  = var.resource_group.name
-  service_plan_id      = var.service_plan.id
-  storage_account_name = local.storage_account_name
-  https_only           = true
-  app_settings         = var.app_settings
-  tags                 = var.tags
+  count                      = var.service_plan.os_type == "Linux" ? 1 : 0
+  name                       = local.function_app_name
+  location                   = var.resource_group.location
+  resource_group_name        = var.resource_group.name
+  service_plan_id            = var.service_plan.id
+  storage_account_name       = local.storage_account_name
+  storage_account_access_key = module.storageaccount[0].azurerm_storage_account.primary_access_key
+  https_only                 = true
+  app_settings               = var.app_settings
+  tags                       = var.tags
   dynamic "identity" {
     for_each = var.identity[*]
     content {
@@ -63,7 +64,7 @@ resource "azurerm_windows_function_app" "app" {
   resource_group_name        = var.resource_group.name
   service_plan_id            = var.service_plan.id
   storage_account_name       = local.storage_account_name
-  storage_account_access_key = var.storage_account.existing_account != null ? var.storage_account.existing_account.primary_access_key : module.storageaccount.azurerm_storage_account.primary_access_key
+  storage_account_access_key = module.storageaccount[0].azurerm_storage_account.primary_access_key
   https_only                 = true
   app_settings               = var.app_settings
   tags                       = var.tags
