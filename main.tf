@@ -17,8 +17,9 @@ module "storageaccount_functionapp" {
   account_kind             = "StorageV2"
   network_rules = [
     {
-      default_action = "Deny"
-      bypass         = ["AzureServices"]
+      default_action      = "Deny"
+      bypass              = ["AzureServices"]
+      private_link_access = []
     }
   ]
 }
