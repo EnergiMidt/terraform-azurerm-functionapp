@@ -54,7 +54,7 @@ resource "azurerm_linux_function_app" "app" {
         ip_address = ip_restriction.value.ip_address
         name       = ip_restriction.value.name
         priority   = ip_restriction.value.priority
-        action     = "ALLOW"
+        action     = "Allow"
       }
     }
     application_insights_connection_string = var.app_insights.connection_string
@@ -93,7 +93,7 @@ resource "azurerm_windows_function_app" "app" {
         ip_address = ip_restriction.value.ip_address
         name       = ip_restriction.value.name
         priority   = ip_restriction.value.priority
-        action     = "ALLOW"
+        action     = "Allow"
       }
     }
     application_insights_connection_string = var.app_insights.connection_string
