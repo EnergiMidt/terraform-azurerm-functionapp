@@ -94,5 +94,6 @@ resource "azurerm_windows_function_app" "app" {
     }
     application_insights_connection_string = var.app_insights.connection_string
     application_insights_key               = var.app_insights.instrumentation_key
+    dotnet_framework_version               = var.dotnet_framework_version
   }
 }
