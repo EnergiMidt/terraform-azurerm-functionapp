@@ -28,6 +28,9 @@ resource "azurerm_linux_function_app" "app" {
   https_only                 = true
   app_settings               = var.app_settings
   tags                       = var.tags
+  application_stack {
+    dotnet_version = var.dotnet_version
+  }
   dynamic "identity" {
     for_each = var.identity[*]
     content {
@@ -55,9 +58,7 @@ resource "azurerm_linux_function_app" "app" {
     application_insights_connection_string = var.app_insights.connection_string
     application_insights_key               = var.app_insights.instrumentation_key
   }
-  application_stack {
-    dotnet_version = var.dotnet_version
-  }
+
 }
 
 resource "azurerm_windows_function_app" "app" {
@@ -71,6 +72,9 @@ resource "azurerm_windows_function_app" "app" {
   https_only                 = true
   app_settings               = var.app_settings
   tags                       = var.tags
+  application_stack {
+    dotnet_version = var.dotnet_version
+  }
   dynamic "identity" {
     for_each = var.identity[*]
     content {
@@ -97,8 +101,5 @@ resource "azurerm_windows_function_app" "app" {
     }
     application_insights_connection_string = var.app_insights.connection_string
     application_insights_key               = var.app_insights.instrumentation_key
-    application_stack {
-      dotnet_version = var.dotnet_version
-    }
   }
 }
