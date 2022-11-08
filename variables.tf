@@ -109,7 +109,7 @@ variable "tags" {
   default     = {}
 }
 
-variable "dotnet_framework_version" {
+variable "dotnet_version" {
   description = "The dotnet version to use (v6.0)."
   type        = string
   nullable    = true
