@@ -108,3 +108,9 @@ variable "tags" {
   type        = map(string)
   default     = {}
 }
+
+variable "dotnet_version" {
+  description = "The dotnet version to use (v6.0)."
+  type        = string
+  nullable    = true
+}

@@ -28,6 +28,7 @@ resource "azurerm_linux_function_app" "app" {
   https_only                 = true
   app_settings               = var.app_settings
   tags                       = var.tags
+
   dynamic "identity" {
     for_each = var.identity[*]
     content {
@@ -36,6 +37,9 @@ resource "azurerm_linux_function_app" "app" {
     }
   }
   site_config {
+    application_stack {
+      dotnet_version = var.dotnet_version
+    }
     dynamic "cors" {
       for_each = var.cors[*]
       content {
@@ -55,6 +59,7 @@ resource "azurerm_linux_function_app" "app" {
     application_insights_connection_string = var.app_insights.connection_string
     application_insights_key               = var.app_insights.instrumentation_key
   }
+
 }
 
 resource "azurerm_windows_function_app" "app" {
@@ -68,6 +73,7 @@ resource "azurerm_windows_function_app" "app" {
   https_only                 = true
   app_settings               = var.app_settings
   tags                       = var.tags
+
   dynamic "identity" {
     for_each = var.identity[*]
     content {
@@ -76,6 +82,9 @@ resource "azurerm_windows_function_app" "app" {
     }
   }
   site_config {
+    application_stack {
+      dotnet_version = var.dotnet_version
+    }
     dynamic "cors" {
       for_each = var.cors[*]
       content {
