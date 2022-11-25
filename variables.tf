@@ -112,5 +112,6 @@ variable "tags" {
 variable "dotnet_version" {
   description = "The dotnet version to use (v6.0)."
   type        = string
+  default     = null
   nullable    = true
 }
