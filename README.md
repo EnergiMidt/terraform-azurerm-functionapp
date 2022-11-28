@@ -52,4 +52,5 @@ Terraform module for managing an Azure Function app.
 | Name | Description |
 |------|-------------|
 | <a name="output_azurerm_function_app"></a> [azurerm\_function\_app](#output\_azurerm\_function\_app) | The Azure Function app resource. |
+| <a name="output_identity"></a> [identity](#output\_identity) | The managed identity of the app. |
 <!-- END_TF_DOCS -->
