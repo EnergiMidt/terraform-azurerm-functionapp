@@ -4,10 +4,10 @@ locals {
 
 output "azurerm_function_app" {
   description = "The Azure Function app resource."
-  value       = local.app
+  value       = element(local.app, 0)
 }
 
 output "identity" {
   description = "The managed identity of the app."
-  value       = local.app.identity
+  value       = element(local.app, 0).identity
 }
