@@ -6,3 +6,8 @@ output "azurerm_function_app" {
   description = "The Azure Function app resource."
   value       = local.app
 }
+
+output "identity" {
+  description = "The managed identity of the app."
+  value       = local.app.identity
+}
