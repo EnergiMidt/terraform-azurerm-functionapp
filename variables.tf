@@ -115,13 +115,9 @@ variable "runtime" {
     dotnet_version = optional(string)
     java_version   = optional(string)
     node_version   = optional(string)
-    custom         = bool
   })
-  default = {
-    custom = false
-  }
   validation {
-    condition     = var.runtime.custom == true || var.runtime.dotnet_version != null || var.runtime.java_version != null || var.runtime.node_version != null
-    error_message = "One of runtime versions must be set."
+    condition     = var.runtime.dotnet_version != null || var.runtime.java_version != null || var.runtime.node_version != null
+    error_message = "One and only one of runtime versions must be set."
   }
 }
