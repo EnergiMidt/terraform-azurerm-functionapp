@@ -7,23 +7,25 @@ locals {
 }
 
 module "resource_group" {
-  source = "github.com/energimidt/terraform-azurerm-resourcegroup.git?ref=v0.0.1"
+  source = "github.com/energimidt/terraform-azurerm-resourcegroup.git?ref=v0.0.3"
 
-  location    = "norwayeast"
-  environment = "test"
-  name        = "tf-functionapp"
-  tags        = local.tags
+  location          = "norwayeast"
+  environment       = "test"
+  tags              = local.tags
+  app_name          = "functionapp"
+  system_short_name = "tc"
 }
 
 module "service_plan" {
-  source = "github.com/energimidt/terraform-azurerm-serviceplan.git?ref=v0.0.1"
+  source = "github.com/energimidt/terraform-azurerm-serviceplan.git?ref=v0.0.3"
 
-  resource_group = module.resource_group
-  environment    = "test"
-  system_name    = "tf-functionapp"
-  os_type        = "Linux"
-  sku_name       = "P1v3"
-  tags           = local.tags
+  resource_group    = module.resource_group
+  environment       = "test"
+  os_type           = "Linux"
+  sku_name          = "P1v3"
+  tags              = local.tags
+  app_name          = "functionapp"
+  system_short_name = "tf"
 }
 
 module "functionapp" {
@@ -36,6 +38,9 @@ module "functionapp" {
   app_name          = "functionapp"
   storage_account = {
     app_short_name = "functionapp"
+  }
+  runtime = {
+    java_version = "17"
   }
   inbound_ip_filtering = [
     {
