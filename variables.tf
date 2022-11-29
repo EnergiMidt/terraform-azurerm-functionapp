@@ -109,9 +109,19 @@ variable "tags" {
   default     = {}
 }
 
-variable "dotnet_version" {
-  description = "The dotnet version to use (v6.0)."
-  type        = string
-  default     = null
-  nullable    = true
+variable "runtime" {
+  description = "The application runtime versions to use."
+  type = object({
+    dotnet_version = optional(string)
+    java_version   = optional(string)
+    node_version   = optional(string)
+    custom         = bool
+  })
+  default = {
+    custom = false
+  }
+  validation {
+    condition     = var.runtime.custom == true || var.runtime.dotnet_version != null || var.runtime.java_version != null || var.runtime.node_version != null
+    error_message = "One of runtime versions must be set."
+  }
 }

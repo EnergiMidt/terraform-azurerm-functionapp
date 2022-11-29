@@ -38,7 +38,10 @@ resource "azurerm_linux_function_app" "app" {
   }
   site_config {
     application_stack {
-      dotnet_version = var.dotnet_version
+      dotnet_version     = var.runtime.dotnet_version
+      java_version       = var.runtime.java_version
+      node_version       = var.runtime.node_version
+      use_custom_runtime = var.runtime.custom
     }
     dynamic "cors" {
       for_each = var.cors[*]
@@ -83,7 +86,10 @@ resource "azurerm_windows_function_app" "app" {
   }
   site_config {
     application_stack {
-      dotnet_version = var.dotnet_version
+      dotnet_version     = var.runtime.dotnet_version
+      java_version       = var.runtime.java_version
+      node_version       = var.runtime.node_version
+      use_custom_runtime = var.runtime.custom
     }
     dynamic "cors" {
       for_each = var.cors[*]
