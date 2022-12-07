@@ -121,3 +121,9 @@ variable "runtime" {
     error_message = "One and only one of runtime versions must be set."
   }
 }
+
+variable "always_on" {
+  description = "(Optional) Whether or not this function app continue running when idle. Defaults to false."
+  type        = bool
+  default     = false
+}
