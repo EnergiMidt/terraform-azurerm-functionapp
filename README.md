@@ -33,6 +33,7 @@ Terraform module for managing an Azure Function app.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_always_on"></a> [always\_on](#input\_always\_on) | (Optional) Whether or not this function app continue running when idle. Defaults to false. | `bool` | `false` | no |
 | <a name="input_app_insights"></a> [app\_insights](#input\_app\_insights) | (Optional) Application insights configuration for the function app. | <pre>object({<br>    connection_string   = string<br>    instrumentation_key = string<br>  })</pre> | `null` | no |
 | <a name="input_app_name"></a> [app\_name](#input\_app\_name) | (Required) Name of this resource within the system it belongs to (see naming convention guidelines).<br>  Will be part of the final name of the deployed resource. | `string` | n/a | yes |
 | <a name="input_app_settings"></a> [app\_settings](#input\_app\_settings) | (Optional) A mapping of app settings that should be set when creating the function app. | `map(string)` | `{}` | no |
