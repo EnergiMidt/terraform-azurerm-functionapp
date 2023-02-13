@@ -37,6 +37,8 @@ resource "azurerm_linux_function_app" "app" {
     }
   }
   site_config {
+    health_check_path                 = var.health_check_path
+    health_check_eviction_time_in_min = var.health_check_eviction_time_in_min
     application_stack {
       dotnet_version = var.runtime.dotnet_version
       java_version   = var.runtime.java_version
