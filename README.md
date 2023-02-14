@@ -14,7 +14,7 @@ Terraform module for managing an Azure Function app.
 
 | Name | Version |
 |------|---------|
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 3.33.0 |
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 3.43.0 |
 
 ## Modules
 
@@ -39,6 +39,8 @@ Terraform module for managing an Azure Function app.
 | <a name="input_app_settings"></a> [app\_settings](#input\_app\_settings) | (Optional) A mapping of app settings that should be set when creating the function app. | `map(string)` | `{}` | no |
 | <a name="input_cors"></a> [cors](#input\_cors) | (Optional) CORS settings for the function app. | <pre>object({<br>    allowed_origins     = string<br>    support_credentials = bool<br>  })</pre> | `null` | no |
 | <a name="input_environment"></a> [environment](#input\_environment) | (Required) The name of the environment. | `string` | n/a | yes |
+| <a name="input_health_check_eviction_time_in_min"></a> [health\_check\_eviction\_time\_in\_min](#input\_health\_check\_eviction\_time\_in\_min) | (Optional) The amount of time in minutes that a node can be unhealthy before being removed from the load balancer.<br>Possible values are between `2` and `10`. Only valid in conjunction with `health_check_path`. | `number` | `10` | no |
+| <a name="input_health_check_path"></a> [health\_check\_path](#input\_health\_check\_path) | (Optional) The path to be checked for this function app health.<br>Relative path of the health check probe. A valid path starts with "/"." | `string` | `"/health"` | no |
 | <a name="input_identity"></a> [identity](#input\_identity) | (Optional) Identity configuration for the function app, i.e. if the identity is system assigned and/or user assigned. | <pre>object({<br>    type         = string<br>    identity_ids = list(string)<br>  })</pre> | `null` | no |
 | <a name="input_inbound_ip_filtering"></a> [inbound\_ip\_filtering](#input\_inbound\_ip\_filtering) | (Optional) A list of CIDR notated addresses that should be allowed to access the function. | <pre>list(object({<br>    name       = string<br>    ip_address = string<br>    priority   = number<br>  }))</pre> | `[]` | no |
 | <a name="input_resource_group"></a> [resource\_group](#input\_resource\_group) | (Required) The resource group this function app should be created in. | `any` | n/a | yes |

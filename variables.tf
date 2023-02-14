@@ -127,3 +127,21 @@ variable "always_on" {
   type        = bool
   default     = false
 }
+
+variable "health_check_path" {
+  description = <<EOT
+(Optional) The path to be checked for this function app health.
+Relative path of the health check probe. A valid path starts with "/"."
+EOT
+  type        = string
+  default     = "/health"
+}
+
+variable "health_check_eviction_time_in_min" {
+  description = <<EOT
+(Optional) The amount of time in minutes that a node can be unhealthy before being removed from the load balancer.
+Possible values are between `2` and `10`. Only valid in conjunction with `health_check_path`.
+EOT
+  type        = number
+  default     = 10
+}
