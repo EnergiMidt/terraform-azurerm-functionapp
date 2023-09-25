@@ -15,6 +15,8 @@ module "storageaccount" {
   account_replication_type = "LRS"
   account_tier             = "Standard"
   account_kind             = "StorageV2"
+
+  tags = var.tags
 }
 
 resource "azurerm_linux_function_app" "app" {
