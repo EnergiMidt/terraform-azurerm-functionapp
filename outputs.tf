@@ -10,7 +10,7 @@ output "azurerm_function_app" {
 
 output "azurerm_storage_account" {
   description = "The Azure Storage Account used by the Azure Function app resource."
-  value       = local.storage_account
+  value       = element(local.storage_account, 0)
 }
 
 output "identity" {
