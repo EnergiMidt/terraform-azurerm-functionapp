@@ -1,7 +1,7 @@
 locals {
   name                 = "${var.system_short_name}-${var.app_name}-${var.environment}"
   function_app_name    = "${local.name}-func"
-  storage_account_name = "${var.system_short_name}${var.storage_account.app_short_name}${var.environment}st"
+  storage_account_name = var.storage_account.app_short_name != null ? "${var.system_short_name}${var.storage_account.app_short_name}${var.environment}st" : null
 
   existing_storage_account_name       = var.storage_account.existing_account.azurerm_storage_account.name
   existing_storage_account_access_key = var.storage_account.existing_account.azurerm_storage_account.primary_access_key
