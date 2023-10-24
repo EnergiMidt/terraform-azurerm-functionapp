@@ -145,3 +145,9 @@ EOT
   type        = number
   default     = 10
 }
+
+variable "public_network_access_enabled" {
+  description = "(Optional) Should public network access be enabled for the Function App. Defaults to `true`."
+  type        = bool
+  default     = true
+}
