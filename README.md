@@ -14,7 +14,7 @@ Terraform module for managing an Azure Function app.
 
 | Name | Version |
 |------|---------|
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 3.43.0 |
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 3.76.0 |
 
 ## Modules
 
@@ -43,6 +43,7 @@ Terraform module for managing an Azure Function app.
 | <a name="input_health_check_path"></a> [health\_check\_path](#input\_health\_check\_path) | (Optional) The path to be checked for this function app health.<br>Relative path of the health check probe. A valid path starts with "/"." | `string` | `"/health"` | no |
 | <a name="input_identity"></a> [identity](#input\_identity) | (Optional) Identity configuration for the function app, i.e. if the identity is system assigned and/or user assigned. | <pre>object({<br>    type         = string<br>    identity_ids = list(string)<br>  })</pre> | `null` | no |
 | <a name="input_inbound_ip_filtering"></a> [inbound\_ip\_filtering](#input\_inbound\_ip\_filtering) | (Optional) A list of CIDR notated addresses that should be allowed to access the function. | <pre>list(object({<br>    name       = string<br>    ip_address = string<br>    priority   = number<br>  }))</pre> | `[]` | no |
+| <a name="input_public_network_access_enabled"></a> [public\_network\_access\_enabled](#input\_public\_network\_access\_enabled) | (Optional) Should public network access be enabled for the Function App. Defaults to `true`. | `bool` | `true` | no |
 | <a name="input_resource_group"></a> [resource\_group](#input\_resource\_group) | (Required) The resource group this function app should be created in. | `any` | n/a | yes |
 | <a name="input_runtime"></a> [runtime](#input\_runtime) | The application runtime versions to use. | <pre>object({<br>    dotnet_version = optional(string)<br>    java_version   = optional(string)<br>    node_version   = optional(string)<br>  })</pre> | n/a | yes |
 | <a name="input_service_plan"></a> [service\_plan](#input\_service\_plan) | (Required) The service plan where this function app should run. | `any` | n/a | yes |
