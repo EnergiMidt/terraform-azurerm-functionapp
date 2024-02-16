@@ -36,6 +36,8 @@ resource "azurerm_linux_function_app" "app" {
   app_settings = var.app_settings
   tags         = var.tags
 
+  enabled = var.enabled != null ? var.enabled : true
+
   dynamic "identity" {
     for_each = var.identity[*]
     content {
