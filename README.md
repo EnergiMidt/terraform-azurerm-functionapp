@@ -50,6 +50,7 @@ Terraform module for managing an Azure Function app.
 | <a name="input_storage_account"></a> [storage\_account](#input\_storage\_account) | (Required) The storage account associated with this function app OR a short name to use when a storage account should be created.<br>  The storage account name will be a concatenation of system\_short\_name, app\_short\_name, environment and "st".<br>  The total length of the storage account name cannot exceed 24 characters and can only contain numbers and  lowercase letters. | <pre>object({<br>    existing_account = optional(any)<br>    app_short_name   = optional(string)<br>  })</pre> | <pre>{<br>  "app_short_name": null,<br>  "existing_account": null<br>}</pre> | no |
 | <a name="input_system_short_name"></a> [system\_short\_name](#input\_system\_short\_name) | (Required) Short abbreviation (to-three letters) of the system name that this resource belongs to (see naming convention guidelines).<br>  Will be part of the final name of the deployed resource. | `string` | n/a | yes |
 | <a name="input_tags"></a> [tags](#input\_tags) | (Optional) A mapping of tags to assign to the resource. | `map(string)` | `{}` | no |
+| <a name="input_enabled"></a> [enabled](#input\_enabled) | (Optional) Enable the function app. | `bool` | `true` | no |
 
 ## Outputs
 
