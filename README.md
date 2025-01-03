@@ -20,7 +20,7 @@ Terraform module for managing an Azure Function app.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_storageaccount"></a> [storageaccount](#module\_storageaccount) | github.com/energimidt/terraform-azurerm-storageaccount.git | 258f25147f1d11e6178857de40a826dc7b674c1b |
+| <a name="module_storageaccount"></a> [storageaccount](#module\_storageaccount) | github.com/energimidt/terraform-azurerm-storageaccount.git | v1.0.0 |
 
 ## Resources
 
@@ -51,6 +51,7 @@ Terraform module for managing an Azure Function app.
 | <a name="input_storage_account"></a> [storage\_account](#input\_storage\_account) | (Required) The storage account associated with this function app OR a short name to use when a storage account should be created.<br/>  The storage account name will be a concatenation of system\_short\_name, app\_short\_name, environment and "st".<br/>  The total length of the storage account name cannot exceed 24 characters and can only contain numbers and  lowercase letters. | <pre>object({<br/>    existing_account = optional(any)<br/>    app_short_name   = optional(string)<br/>  })</pre> | <pre>{<br/>  "app_short_name": null,<br/>  "existing_account": null<br/>}</pre> | no |
 | <a name="input_system_short_name"></a> [system\_short\_name](#input\_system\_short\_name) | (Required) Short abbreviation (to-three letters) of the system name that this resource belongs to (see naming convention guidelines).<br/>  Will be part of the final name of the deployed resource. | `string` | n/a | yes |
 | <a name="input_tags"></a> [tags](#input\_tags) | (Optional) A mapping of tags to assign to the resource. | `map(string)` | `{}` | no |
+| <a name="input_vnet_route_all_enabled"></a> [vnet\_route\_all\_enabled](#input\_vnet\_route\_all\_enabled) | (Optional) Should all outbound traffic have NAT Gateways, Network Security Groups and User Defined Routes applied? Defaults to `false`. | `bool` | `false` | no |
 
 ## Outputs
 
