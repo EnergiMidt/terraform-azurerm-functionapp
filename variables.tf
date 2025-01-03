@@ -152,6 +152,12 @@ variable "public_network_access_enabled" {
   default     = true
 }
 
+variable "vnet_route_all_enabled" {
+  description = " (Optional) Should all outbound traffic have NAT Gateways, Network Security Groups and User Defined Routes applied? Defaults to `false`."
+  type        = bool
+  default     = false
+}
+
 variable "enabled" {
   description = "(Optional) Utilized to disable the function app. Defaults to `true`."
   type        = bool

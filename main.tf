@@ -8,7 +8,7 @@ locals {
 }
 
 module "storageaccount" {
-  source = "github.com/energimidt/terraform-azurerm-storageaccount.git?ref=v0.0.2"
+  source = "github.com/energimidt/terraform-azurerm-storageaccount.git?ref=v1.0.0"
   count  = var.storage_account.app_short_name != null ? 1 : 0
 
   environment              = var.environment
@@ -72,8 +72,14 @@ resource "azurerm_linux_function_app" "app" {
     always_on                              = var.always_on
     application_insights_connection_string = var.app_insights.connection_string
     application_insights_key               = var.app_insights.instrumentation_key
+    vnet_route_all_enabled                 = var.vnet_route_all_enabled
   }
 
+  lifecycle {
+    # network integration should be done with the `azurerm_app_service_virtual_network_swift_connection` resource
+    # https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/app_service_virtual_network_swift_connection
+    ignore_changes = [virtual_network_subnet_id]
+  }
 }
 
 resource "azurerm_windows_function_app" "app" {
@@ -121,5 +127,11 @@ resource "azurerm_windows_function_app" "app" {
     always_on                              = var.always_on
     application_insights_connection_string = var.app_insights.connection_string
     application_insights_key               = var.app_insights.instrumentation_key
+  }
+
+  lifecycle {
+    # network integration should be done with the `azurerm_app_service_virtual_network_swift_connection` resource
+    # https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/app_service_virtual_network_swift_connection
+    ignore_changes = [virtual_network_subnet_id]
   }
 }
