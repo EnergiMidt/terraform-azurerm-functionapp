@@ -32,9 +32,11 @@ resource "azurerm_linux_function_app" "app" {
   storage_account_access_key    = var.storage_account.existing_account != null ? local.existing_storage_account_access_key : module.storageaccount[0].azurerm_storage_account.primary_access_key
   public_network_access_enabled = var.public_network_access_enabled
 
-  https_only   = true
-  app_settings = var.app_settings
-  tags         = var.tags
+  https_only = true
+  app_settings = merge(var.app_settings, {
+    WEBSITE_RUN_FROM_PACKAGE = ""
+  })
+  tags = var.tags
 
   enabled = var.enabled != null ? var.enabled : true
 
@@ -78,7 +80,10 @@ resource "azurerm_linux_function_app" "app" {
   lifecycle {
     # network integration should be done with the `azurerm_app_service_virtual_network_swift_connection` resource
     # https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/app_service_virtual_network_swift_connection
-    ignore_changes = [virtual_network_subnet_id]
+    ignore_changes = [
+      virtual_network_subnet_id,
+      app_settings["WEBSITE_RUN_FROM_PACKAGE"]
+    ]
   }
 }
 
