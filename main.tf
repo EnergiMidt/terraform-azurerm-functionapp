@@ -51,9 +51,10 @@ resource "azurerm_linux_function_app" "app" {
     health_check_path                 = var.health_check_path
     health_check_eviction_time_in_min = var.health_check_eviction_time_in_min
     application_stack {
-      dotnet_version = var.runtime.dotnet_version
-      java_version   = var.runtime.java_version
-      node_version   = var.runtime.node_version
+      dotnet_version              = var.runtime.dotnet_version
+      use_dotnet_isolated_runtime = var.runtime.dotnet_isolated
+      java_version                = var.runtime.java_version
+      node_version                = var.runtime.node_version
     }
     dynamic "cors" {
       for_each = var.cors[*]
