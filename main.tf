@@ -109,9 +109,10 @@ resource "azurerm_windows_function_app" "app" {
   }
   site_config {
     application_stack {
-      dotnet_version = var.runtime.dotnet_version
-      java_version   = var.runtime.java_version
-      node_version   = var.runtime.node_version
+      dotnet_version              = var.runtime.dotnet_version
+      use_dotnet_isolated_runtime = var.runtime.dotnet_isolated
+      java_version                = var.runtime.java_version
+      node_version                = var.runtime.node_version
     }
     dynamic "cors" {
       for_each = var.cors[*]

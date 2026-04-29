@@ -113,6 +113,7 @@ variable "runtime" {
   description = "The application runtime versions to use."
   type = object({
     dotnet_version = optional(string)
+    dotnet_isolated= optional(bool)
     java_version   = optional(string)
     node_version   = optional(string)
   })
